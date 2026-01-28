@@ -314,15 +314,6 @@ console.log(pets); // ["dog", "cat", "horse"]
 console.log(pets.length); // 3
 
 
-
-
-
-
-*/
-
-
-
-
 //1. Create an object that has properties "username" and "password". Fill those values in with strings.
 let login = {
     username: "3aziz",
@@ -339,6 +330,55 @@ let newsfeed = [
     {username: "user2", timeline: "timeline2"},
     {username: "user3", timeline: "timeline3"}
 ];
+
+
+
+let light = "yellow";
+
+switch (light) {
+    case "red":
+        console.log("STOP!")
+        break;
+    case "yellow":
+        console.log("SLOW DOWN")
+        break;
+    case "green":
+        console.log("GO!")
+        break;
+    default:
+        console.log("Light is broken")
+        break;
+}
+
+let pr = prompt("Enter your grade:");
+switch (pr) {
+    case "A":
+        alert("90-100%");
+        break;
+    case "B":
+        alert("80-89%");
+        break;
+    case "C":
+        alert("70-79%");
+        break;
+    case "D":
+        alert("60-69%");
+        break;
+    case "F":
+        alert("Below 60%");
+        break;
+    default:
+        alert("Invalid grade");
+        break;
+}
+
+
+
+
+
+*/
+
+
 
 
 
