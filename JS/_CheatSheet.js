@@ -226,3 +226,53 @@ switch (fruit) {
 // default is optional but recommended
 
 
+// ========== LOOPS ==========
+
+// For loop (when you know how many times)
+for (let i = 0; i < 5; i++) {
+  console.log(i);                    // 0, 1, 2, 3, 4
+}
+
+// Loop through array
+let arr = ["a", "b", "c"];
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);               // a, b, c
+}
+
+// For...in (loop through object properties or array indexes)
+let obj = { name: "Awdi", age: 25 };
+for (let key in obj) {
+  console.log(key + ": " + obj[key]); // name: Awdi, age: 25
+}
+
+// For...of (loop through array values - NOT objects)
+let colors = ["red", "blue"];
+for (let color of colors) {
+  console.log(color);                // red, blue
+}
+
+// While loop (runs while condition is true)
+let n = 0;
+while (n < 3) {
+  console.log(n);                    // 0, 1, 2
+  n++;
+}
+
+// Do...while (always runs at least once)
+let h = 0;
+do {
+  console.log(h);                    // 0, 1, 2
+  h++;
+} while (h < 3);
+
+// Break (exit loop completely)
+for (let i = 0; i < 10; i++) {
+  if (i === 5) break;
+  console.log(i);                    // 0, 1, 2, 3, 4
+}
+
+// Continue (skip current iteration)
+for (let i = 0; i < 5; i++) {
+  if (i === 2) continue;
+  console.log(i);                    // 0, 1, 3, 4
+}
