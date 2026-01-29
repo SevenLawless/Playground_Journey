@@ -1,23 +1,4 @@
 //----------------------ex1----------------------
-/*
-🌟 Exercise 1 : Find the numbers divisible by 23
-Instructions
-Create a function call displayNumbersDivisible() that takes no parameter.
-In the function, loop through numbers 0 to 500.
-Console.log all the numbers divisible by 23.
-At the end, console.log the sum of all numbers that are divisible by 23.
-Outcome : 0 23 46 69 92 115 138 161 184 207 230 253 276 299 322 345 
-368 391 414 437 460 483
-Sum : 5313
-Bonus: Add a parameter divisor to the function.
-displayNumbersDivisible(divisor)
-Example:
-displayNumbersDivisible(3) : Console.log all the numbers divisible by 3, 
-and their sum
-displayNumbersDivisible(45) : Console.log all the numbers divisible by 45, 
-and their sum
-*/
-
 
 function displayNumbersDivisible() {
     let sum = 0;
@@ -34,33 +15,6 @@ displayNumbersDivisible();
 
 
 //----------------------ex2----------------------
-/*
-Exercise 2 : Shopping List
-Instructions
-const stock = { 
-    "banana": 6, 
-    "apple": 0,
-    "pear": 12,
-    "orange": 32,
-    "blueberry":1
-}  
-
-const prices = {    
-    "banana": 4, 
-    "apple": 2, 
-    "pear": 1,
-    "orange": 1.5,
-    "blueberry":10
-} 
-Add the stock and prices objects to your js file.
-Create an array called shoppingList with the following items: “banana”, “orange”, and “apple”. It means that you have 1 banana, 1 orange and 1 apple in your cart.
-Create a function called myBill() that takes no parameters.
-The function should return the total price of your shoppingList. In order to do this you must follow these rules:
-The item must be in stock. (Hint : check out if .. in)
-If the item is in stock find out the price in the prices object.
-Call the myBill() function.
-Bonus: If the item is in stock, decrease the item’s stock by 1
-*/
 
 const stock = { 
     "banana": 6, 
@@ -85,10 +39,157 @@ function myBill() {
     for (let item of shoppingList) {
         if (item in stock && stock[item] > 0) {
             total += prices[item];
-            stock[item] -= 1; // Decrease stock by 1
+            stock[item] -= 1;
         }
     }
     return total;
 }
 
 console.log("Total Bill: $" + myBill());
+
+
+//----------------------ex3----------------------
+
+
+function changeEnough(itemPrice, amountOfChange) {
+    let sum = 0;
+    sum += amountOfChange[0] * 0.25;
+    sum += amountOfChange[1] * 0.10;
+    sum += amountOfChange[2] * 0.05;
+    sum += amountOfChange[3] * 0.01;
+    return sum >= itemPrice;
+}
+console.log(changeEnough(4.25, [25, 20, 5, 0]));
+
+
+//----------------------ex4----------------------
+
+
+function hotelCost(nights) {
+    return nights * 140;
+}
+
+function planeRideCost(destination) {
+    destination = destination.toLowerCase();
+    if (destination === "london") return 183;
+    if (destination === "paris") return 220;
+    return 300;
+}
+
+function rentalCarCost(days) {
+    let cost = days * 40;
+    if (days > 10) cost *= 0.95;
+    return cost;
+}
+
+function totalVacationCost() {
+    let nights, destination, days;
+    
+    do {
+        nights = parseInt(prompt("How many nights?"));
+    } while (isNaN(nights) || nights <= 0);
+    
+    do {
+        destination = prompt("What's your destination?");
+    } while (!destination || typeof destination !== 'string');
+    
+    do {
+        days = parseInt(prompt("How many days to rent?"));
+    } while (isNaN(days) || days <= 0);
+    
+    let hotel = hotelCost(nights);
+    let plane = planeRideCost(destination);
+    let car = rentalCarCost(days);
+    let total = hotel + plane + car;
+    
+    console.log(`The car cost: $${car}, the hotel cost: $${hotel}, the plane tickets cost: $${plane}.`);
+    console.log(`Total vacation cost: $${total}`);
+}
+
+totalVacationCost();
+
+
+//----------------------ex5----------------------
+
+let container = document.getElementById("container");
+console.log(container);
+let lists = document.querySelectorAll(".list");
+lists[0].children[1].textContent = "Richard";
+lists[1].children[1].remove();
+
+for (let i = 0; i < lists.length; i++) {
+    lists[i].firstElementChild.textContent = "Zakaria";
+}
+
+for (let i = 0; i < lists.length; i++) {
+    lists[i].classList.add("student_list");
+}
+
+lists[0].classList.add("university", "attendance");
+container.style.backgroundColor = "lightblue";
+container.style.padding = "20px";
+lists[1].children[1].style.display = "none";
+lists[0].children[1].style.border = "2px solid black";
+document.body.style.fontSize = "20px";
+
+if (container.style.backgroundColor === "lightblue") {
+    let firstUser = lists[0].firstElementChild.textContent;
+    let secondUser = lists[1].firstElementChild.textContent;
+    alert(`Hello ${firstUser} and ${secondUser}`);
+}
+
+
+
+//----------------------ex6----------------------
+
+let navbar = document.getElementById("navBar");
+navbar.setAttribute("id", "socialNetworkNavigation");
+
+let ul = navbar.querySelector("ul");
+let newLi = document.createElement("li");
+newLi.textContent = "Logout";
+ul.appendChild(newLi);
+
+let firstLi = ul.firstElementChild;
+let lastLi = ul.lastElementChild;
+console.log("First link: " + firstLi.textContent);
+console.log("Last link: " + lastLi.textContent);
+
+
+//----------------------ex7----------------------
+const allBooks = [
+    {
+        title: "Captain Majid",
+        author: "mokhrij 1",
+        image: "https://m.media-amazon.com/images/M/MV5BNjczMTY2M2EtNjQ2Zi00MjFhLWJmOGItN2MyNjk3YTdiYWI3XkEyXkFqcGc@._V1_.jpg",
+        alreadyRead: true
+    },
+    {
+        title: "Adam",
+        author: "Adam",
+        image: "https://miro.medium.com/v2/resize:fit:1124/0*-G6zP5TW_kWDzEpP.jpg",
+        alreadyRead: false
+    }
+];
+
+let section = document.querySelector(".listBooks");
+
+for (let book of allBooks) {
+    let bookDiv = document.createElement("div");
+    let bookDetails = document.createElement("p");
+    bookDetails.textContent = `${book.title} written by ${book.author}`;
+    
+    if (book.alreadyRead) {
+        bookDetails.style.color = "red";
+    }
+
+    let bookImg = document.createElement("img");
+    bookImg.src = book.image;
+    bookImg.style.width = "100px";
+    
+
+    bookDiv.appendChild(bookImg);
+    bookDiv.appendChild(bookDetails);
+
+    section.appendChild(bookDiv);
+}
