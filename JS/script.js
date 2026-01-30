@@ -250,11 +250,7 @@ function unique(arr) {
 
 //----------------------ex6----------------------
 
-function createCalendar(year, month, opts = {}) {
-    let body.document.getElementsByTagName("body");
 
-    // i have no idea tbh
-}
 function createCalendar(year, month) {
     // Get the body
     let body = document.body;
