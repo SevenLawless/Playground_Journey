@@ -1,114 +1,67 @@
+/*
 //----------------------ex1----------------------
 
-function displayNumbersDivisible() {
-    let sum = 0;
-  for (let i = 1; i <= 500; i++) {
-    if (i % 23 === 0) {
-      console.log(i + " is divisible by 23");
-        sum += i;
+function is_Blank(str) {
+    if (str === "") {
+        console.log("String is blank");
+    }else {
+       console.log("String is stringing"); 
     }
-}
-console.log("Sum: " + sum);
+    
 }
 
-displayNumbersDivisible();
+is_Blank("hh");
 
 
 //----------------------ex2----------------------
 
-const stock = { 
-    "banana": 6, 
-    "apple": 0,
-    "pear": 12,
-    "orange": 32,
-    "blueberry":1
-}  
-
-const prices = {    
-    "banana": 4, 
-    "apple": 2, 
-    "pear": 1,
-    "orange": 1.5,
-    "blueberry":10
-} 
-
-let shoppingList = ["banana", "orange", "apple"];
-
-function myBill() {
-    let total = 0;
-    for (let item of shoppingList) {
-        if (item in stock && stock[item] > 0) {
-            total += prices[item];
-            stock[item] -= 1;
-        }
-    }
-    return total;
+function Abbrev_name(str) {
+    let splitstr = str.split(" ")
+    console.log(`${splitstr[0]} ${splitstr[1][0].toUpperCase()}.`)
 }
 
-console.log("Total Bill: $" + myBill());
-
+Abbrev_name("khuna mohmad");
 
 //----------------------ex3----------------------
 
 
-function changeEnough(itemPrice, amountOfChange) {
-    let sum = 0;
-    sum += amountOfChange[0] * 0.25;
-    sum += amountOfChange[1] * 0.10;
-    sum += amountOfChange[2] * 0.05;
-    sum += amountOfChange[3] * 0.01;
-    return sum >= itemPrice;
+function switchh(str) {
+    let newvar = '';
+    for (let i=0; i<str.length; i++) {
+        if (str[i] === str[i].toUpperCase()) {
+            newvar += str[i].toLowerCase()
+        } else if (str[i] === str[i].toLowerCase()) {
+            newvar += str[i].toUpperCase()
+        }
+        
+    }
+    console.log(newvar)
 }
-console.log(changeEnough(4.25, [25, 20, 5, 0]));
 
+switchh("The Quick Brown Fox");
 
+*/
 //----------------------ex4----------------------
 
 
-function hotelCost(nights) {
-    return nights * 140;
+function omniwhatever(ar, chosenone) {
+    let shayt = false
+    for (let i = 0; i < ar.length; i++) {
+        let omni = false;
+
+        for (let y = 0; y < ar[i].length; y++) {
+            if (chosenone === ar[i][y]) {omni = true;}
+
+        }
+
+        if (!omni) {shayt = true;}
+    }
+    if (shayt) {}
 }
 
-function planeRideCost(destination) {
-    destination = destination.toLowerCase();
-    if (destination === "london") return 183;
-    if (destination === "paris") return 220;
-    return 300;
-}
+omniwhatever([[1, 1], [1, 3], [5, 1], [6, 1]], 1);
 
-function rentalCarCost(days) {
-    let cost = days * 40;
-    if (days > 10) cost *= 0.95;
-    return cost;
-}
-
-function totalVacationCost() {
-    let nights, destination, days;
-    
-    do {
-        nights = parseInt(prompt("How many nights?"));
-    } while (isNaN(nights) || nights <= 0);
-    
-    do {
-        destination = prompt("What's your destination?");
-    } while (!destination || typeof destination !== 'string');
-    
-    do {
-        days = parseInt(prompt("How many days to rent?"));
-    } while (isNaN(days) || days <= 0);
-    
-    let hotel = hotelCost(nights);
-    let plane = planeRideCost(destination);
-    let car = rentalCarCost(days);
-    let total = hotel + plane + car;
-    
-    console.log(`The car cost: $${car}, the hotel cost: $${hotel}, the plane tickets cost: $${plane}.`);
-    console.log(`Total vacation cost: $${total}`);
-}
-
-totalVacationCost();
-
-
+/*
 //----------------------ex5----------------------
 
 let container = document.getElementById("container");
@@ -193,3 +146,6 @@ for (let book of allBooks) {
 
     section.appendChild(bookDiv);
 }
+
+
+*/
