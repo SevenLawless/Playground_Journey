@@ -245,7 +245,7 @@ function unique(arr) {
 }
 
 
-*/
+
 
 
 //----------------------ex6----------------------
@@ -321,7 +321,7 @@ function createCalendar(year, month) {
 createCalendar(2012, 9);  // September 2012
 
 
-
+*/
 /*
 //----------------------special exercise----------------------
 
