@@ -56,7 +56,25 @@ text.trim();                        // "Hello World" (remove spaces from ends)
 text.replace("World", "JS");        // "  Hello JS  " (first match only)
 text.replaceAll("l", "L");          // "  HeLLo WorLd  " (all matches)
 
+// Padding (adding characters to make a specific length)
+"hi".padEnd(5);                     // "hi   " (adds 3 spaces at end)
+"hi".padEnd(5, ".");                // "hi..." (adds dots instead of spaces)
+"5".padStart(3, "0");               // "005" (adds zeros at start)
+
+// Repeat
+"*".repeat(5);                      // "*****" (repeats 5 times)
+"Ha".repeat(3);                     // "HaHaHa"
+
 "Hi" + " " + "there";               // "Hi there" (concatenation)
+
+// Split string into array
+"apple,banana,orange".split(",");   // ["apple", "banana", "orange"]
+"Hello World".split(" ");           // ["Hello", "World"]
+"Hi".split("");                     // ["H", "i"] (splits each character)
+
+// Common pattern: get input and split
+// let input = prompt("Enter words separated by commas:");
+// let words = input.split(", ");  // "apple, banana" → ["apple", "banana"]
 
 // Template literals (modern way - use backticks)
 let fullName = "Awdi";
@@ -74,12 +92,46 @@ decimal.toFixed(0);                 // "11" (round to integer)
 isNaN("hello");                     // true (not a number)
 isNaN(123);                         // false (is a number)
 
+// Math methods
+Math.max(1, 5, 3);                  // 5 (maximum value)
+Math.min(1, 5, 3);                  // 1 (minimum value)
+
+// Find max in array using spread operator
+let nums = [1, 5, 3, 9, 2];
+Math.max(...nums);                  // 9
+// The spread operator (...) unpacks the array
+// Math.max(...[1, 5, 3]) becomes Math.max(1, 5, 3)
+
 
 // ========== USER INTERACTION ==========
 console.log("Hello");                       // Print to console
 alert("Hello!");                            // Show popup message
 let userInput = prompt("Your name?");       // Get input (returns string)
 let confirmed = confirm("Are you sure?");   // Yes/No dialog (returns true/false)
+
+
+// ========== DATES ==========
+// Create dates
+let now = new Date();                               // Current date and time
+let specificDate = new Date(2024, 0, 15);          // January 15, 2024 (month is 0-indexed!)
+let fromString = new Date("2024-01-15");           // From string
+
+// Get date parts
+now.getFullYear();                                  // 2024 (4-digit year)
+now.getMonth();                                     // 0-11 (0=January, 11=December)
+now.getDate();                                      // 1-31 (day of month)
+now.getDay();                                       // 0-6 (0=Sunday, 6=Saturday)
+
+// Important: getDay() returns 0 for Sunday!
+// To make Monday = 1, use: if (day === 0) day = 7;
+
+// Get number of days in a month
+let daysInMonth = new Date(2024, 2, 0).getDate();  // Last day of Feb 2024 → 29
+// Trick: Day 0 of next month = last day of current month
+
+// Example: Check what day of week a date falls on
+let date = new Date(2024, 8, 1);                   // September 1, 2024
+let dayOfWeek = date.getDay();                      // 0=Sunday, 1=Monday, etc.
 
 
 // ========== ARRAYS ==========
@@ -114,6 +166,21 @@ fruits.slice(1);                    // Copy from index 1 to end
 fruits.toString();                  // "apple,banana,orange"
 fruits.join(" - ");                 // "apple - banana - orange"
 fruits.join("");                    // "applebananaorange"
+
+// Filter array (creates new array with items that pass a test)
+let numbers = [1, 5, 10, 15, 20];
+let bigNumbers = numbers.filter(num => num > 10);   // [15, 20]
+
+// Filter mixed array to get only numbers
+let mixedArr = [1, "hello", 3, null, 5];
+let onlyNumbers = mixedArr.filter(item => typeof item === 'number');  // [1, 3, 5]
+
+// Remove duplicates using Set (very common pattern!)
+let withDuplicates = [1, 2, 3, 3, 3, 4, 5];
+let unique = [...new Set(withDuplicates)];          // [1, 2, 3, 4, 5]
+// How it works:
+// - new Set(arr) creates a Set (removes duplicates automatically)
+// - [...Set] spreads it back into an array
 
 
 // ========== OBJECTS ==========
@@ -204,6 +271,45 @@ if (!isActive) {                             // NOT (reverses true/false)
 
 // Ternary operator (shortcut)
 let accountStatus = userAge >= 18 ? "Adult account" : "Minor account";
+
+// Ternary with default values (common pattern)
+let filtered = arr.filter(item => typeof item === 'number');
+let maxNum = filtered.length === 0 ? 0 : Math.max(...filtered);
+// If array is empty, return 0, otherwise return max value
+
+
+// ========== SPREAD OPERATOR (...) ==========
+// The spread operator (...) unpacks/expands arrays or objects
+
+// With Arrays:
+let arr1 = [1, 2, 3];
+let arr2 = [4, 5, 6];
+
+// Combine arrays
+let combined = [...arr1, ...arr2];              // [1, 2, 3, 4, 5, 6]
+
+// Copy array (creates a new array)
+let copy = [...arr1];                           // [1, 2, 3]
+
+// Add items while copying
+let expanded = [0, ...arr1, 4];                 // [0, 1, 2, 3, 4]
+
+// Use with functions
+Math.max(...[1, 5, 3]);                         // Same as Math.max(1, 5, 3) → 5
+console.log(...arr1);                           // Same as console.log(1, 2, 3)
+
+// With Objects:
+let user = { name: "Awdi", age: 25 };
+
+// Copy object
+let userCopy = { ...user };                     // { name: "Awdi", age: 25 }
+
+// Combine objects
+let location = { city: "Casablanca", country: "Morocco" };
+let fullProfile = { ...user, ...location };     // { name: "Awdi", age: 25, city: "Casablanca", country: "Morocco" }
+
+// Override properties
+let updated = { ...user, age: 26 };             // { name: "Awdi", age: 26 }
 
 
 // ========== SWITCH STATEMENTS ==========
@@ -510,6 +616,31 @@ let ul = document.querySelector("ul");
 let newLi = document.createElement("li");
 newLi.textContent = "New Item";
 ul.appendChild(newLi);
+
+// Pattern: Create multiple elements in a loop
+// Example - Create planet divs with moon divs inside
+let planets = [
+  { name: "Earth", moons: 1, color: "blue" },
+  { name: "Mars", moons: 2, color: "red" }
+];
+
+let container = document.querySelector(".container");
+
+for (let planet of planets) {
+  // Create planet div
+  let planetDiv = document.createElement("div");
+  planetDiv.textContent = planet.name;
+  planetDiv.style.backgroundColor = planet.color;
+  
+  // Create moon divs inside planet
+  for (let i = 0; i < planet.moons; i++) {
+    let moonDiv = document.createElement("div");
+    moonDiv.classList.add("moon");
+    planetDiv.appendChild(moonDiv);          // Add moon to planet
+  }
+  
+  container.appendChild(planetDiv);          // Add planet to container
+}
 
 
 // === ATTRIBUTES ===
