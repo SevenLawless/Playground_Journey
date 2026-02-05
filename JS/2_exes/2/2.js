@@ -1,51 +1,32 @@
-//----------------------special exercise----------------------
+const form = document.querySelector('form');
+console.log(form);
 
-// 1. Get user input
-let input = prompt("Enter words separated by commas:");
+const fnameInput = document.getElementById('fname');
+const lnameInput = document.getElementById('lname');
+console.log(fnameInput);
+console.log(lnameInput);
 
-// 2. Split into array
-let words = input.split(", ");
+const firstnameByName = document.querySelector('input[name="firstname"]');
+const lastnameByName = document.querySelector('input[name="lastname"]');
+console.log(firstnameByName);
+console.log(lastnameByName);
 
-
-
-// 3. Find longest word length
-let maxLength = 0;
-for (let word of words) {
-    if (word.length > maxLength) {
-        maxLength = word.length;
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const fnameValue = fnameInput.value;
+    const lnameValue = lnameInput.value;
+    
+    if (fnameValue !== '' && lnameValue !== '') {
+        const ul = document.querySelector('.usersAnswer');
+        
+        const li1 = document.createElement('li');
+        li1.textContent = fnameValue;
+        
+        const li2 = document.createElement('li');
+        li2.textContent = lnameValue;
+        
+        ul.appendChild(li1);
+        ul.appendChild(li2);
     }
-}
-
-// 4. Create top border
-let topBorder = "*".repeat(maxLength + 4);  // +4 for "* " and " *"
-console.log(topBorder);
-
-// 5. Print each word with padding
-for (let word of words) {
-    let padding = " ".repeat(maxLength - word.length);  // Add spaces to match longest word
-    console.log(`* ${word}${padding} *`);
-}
-
-// 6. Create bottom border
-console.log(topBorder);
-
-// If input is: "Hello, World, in, a, frame"
-
-// Step 1: Split → ["Hello", "World", "in", "a", "frame"]
-
-// Step 2: Find longest word
-// "Hello" = 5 letters (longest!)
-// maxLength = 5
-
-// Step 3: Top border
-// "*".repeat(5 + 4) = "*********"
-
-// Step 4: Print words
-// "Hello" → "* Hello *" (no padding needed, it's longest)
-// "World" → "* World *" (no padding, also 5 letters)
-// "in"    → "* in    *" (add 3 spaces: "   ")
-// "a"     → "* a     *" (add 4 spaces: "    ")
-// "frame" → "* frame *" (no padding, also 5 letters)
-
-// Step 5: Bottom border
-// "*********"
+});
