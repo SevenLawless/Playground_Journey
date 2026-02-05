@@ -22,5 +22,55 @@ module.exports = {
         };
         events.push(newEvent);
         return newEvent;
+    },
+
+    updateEvent: function(id, updates) {
+        const eventToEdit = events.find((event) => event.id === parseInt(id));
+
+        if (!eventToEdit) {
+            return null;
+        }
+
+
+        if (updates.title) {
+            eventToEdit.title = updates.title;
+        }
+        if (updates.date) {
+            eventToEdit.date = updates.date;
+        }
+        if (updates.capacity) {
+            eventToEdit.capacity = updates.capacity;
+        }
+
+        return eventToEdit;
+    },
+
+    deleteEvent: function(id) {
+        const eventToDelete = events.find((event) => event.id === parseInt(id));
+
+        if (!eventToDelete) {
+            return null;
+        }
+
+        events = events.filter((event) => event.id !== parseInt(id));
+
+        return eventToDelete;
+    },
+
+    deleteRegistration: function(id, username) {
+        const eventToUnregister = events.find((event) => event.id === parseInt(id));
+
+        if (!eventToUnregister) {
+            return null;
+        }
+
+        if (!eventToUnregister.registrations.includes(username)) {
+        return { error: "User not even registered" };
+        }
+
+
+        eventToUnregister.registrations = eventToUnregister.registrations.filter((name) => name !== username);
+
+        return eventToUnregister;
     }
 };
