@@ -1,6 +1,6 @@
 let events = [
-    {id: 1, title: "Tech", date: "2026-03-15", capacity: 20, registrations: []},
-    {id: 2, title: "Clownery", date: "2026-03-04", capacity: 1, registrations: []}
+    {id: 1, title: "Tech", date: "2026-03-15", capacity: 20, createdBy: null, registrations: []},
+    {id: 2, title: "Clownery", date: "2026-03-04", capacity: 1, createdBy: null, registrations: []}
 ];
 
 module.exports = {
@@ -18,6 +18,7 @@ module.exports = {
             title: eventData.title,
             date: eventData.date,
             capacity: eventData.capacity,
+            createdBy: eventData.createdBy,
             registrations: []
         };
         events.push(newEvent);

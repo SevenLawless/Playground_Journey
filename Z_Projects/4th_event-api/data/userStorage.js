@@ -1,3 +1,7 @@
+const bcrypt = require('bcrypt');
+
+
+
 let users = [];
 
 module.exports = {
@@ -16,12 +20,15 @@ module.exports = {
     },
 
 
-    createUser: function(userData) {
+    createUser: async function(userData) {
+
+        const hashedPassword = await bcrypt.hash(userData.password, 10);
+
         const newUser = {
             id: users.length + 1,
             username: userData.username,
             email: userData.email,
-            password: userData.password
+            password: hashedPassword
         };
         users.push(newUser);
         return newUser;

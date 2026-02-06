@@ -58,14 +58,20 @@ exports.createEvent = (req, res) => {
         return res.status(400).json({error: "Date must be in the future"});
     }
 
-    const newEvent = storage.createEvent({title, date, capacity});
+    const newEvent = storage.createEvent({
+        title,
+        date,
+        capacity,
+        createdBy: req.user.userId
+    });
     res.status(201).json({event: newEvent});
 };
 
 
 exports.registerForEvent = (req, res) => {
     const id = req.params.id;
-    const {username} = req.body;
+    // const {username} = req.body;
+    const username = req.user.email;
 
     const event = storage.getEventById(id);
 
@@ -94,11 +100,18 @@ exports.updateEvent = (req, res) => {
     const id = req.params.id;
     const updates = req.body;
 
-    const updated = storage.updateEvent(id, updates);
-    if (!updated) {
+    const event = storage.getEventById(id);
+
+    
+    if (!event) {
         return res.status(404).json({error: "Event to be edited : Not Found!"});
     }
 
+    if (event.createdBy !== req.user.userId) {
+        return res.status(403).json({error: "You can only update ur own events"})
+    }
+
+    const updated = storage.updateEvent(id, updates);
     res.status(200).json({event: updated});
 }
 
@@ -106,12 +119,17 @@ exports.updateEvent = (req, res) => {
 exports.deleteEvent = (req, res) => {
     const id = req.params.id;
 
-
-    const selected = storage.deleteEvent(id)
-    if (!selected) {
+    const event = storage.getEventById(id);
+    
+    if (!event) {
         return res.status(404).json({error: "Event to be deleted : Not Found!"}); 
     }
 
+    if (event.createdBy !== req.user.userId) {
+        return res.status(403).json({error: "You can only delete your own events"});
+    }
+
+    const selected = storage.deleteEvent(id);
     res.status(200).json({message: "Event deleted", event: selected});
 }
 
@@ -119,7 +137,7 @@ exports.deleteEvent = (req, res) => {
 
 exports.unregisterEvent = (req, res) => {
     const id = req.params.id;
-    const {username} = req.body;
+    const username = req.user.email;
 
     const unregister = storage.deleteRegistration(id, username);
 
