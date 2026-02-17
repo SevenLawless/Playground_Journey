@@ -1,14 +1,12 @@
-
-const selectElement = document.getElementById('genres');
+const selectElement = document.getElementById("genres");
 console.log(selectElement.value);
 
-const newOption = document.createElement('option');
-newOption.value = 'classic';
-newOption.textContent = 'Classic';
+const newOption = document.createElement("option");
+newOption.value = "classic";
+newOption.textContent = "Classic";
 selectElement.appendChild(newOption);
-
 
 newOption.selected = true;
 
-
 console.log(selectElement.value);
+
