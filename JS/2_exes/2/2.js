@@ -28,5 +28,10 @@ form.addEventListener('submit', function(event) {
         
         ul.appendChild(li1);
         ul.appendChild(li2);
+
+        fnameInput.value = '';
+        lnameInput.value = '';
+    }else{
+        console.log("empty");
     }
 });

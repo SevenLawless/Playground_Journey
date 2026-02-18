@@ -1,62 +1,47 @@
-let shoppingList = [];
-
-const root = document.getElementById('root');
+// FUNCTIONS
 
 
-const form = document.createElement('form');
-
-const input = document.createElement('input');
-input.type = 'text';
-input.id = 'itemInput';
-input.placeholder = 'Enter item...';
-
-const addButton = document.createElement('button');
-addButton.textContent = 'AddItem';
-addButton.type = 'button';
-
-form.appendChild(input);
-form.appendChild(addButton);
 
 
-const clearButton = document.createElement('button');
-clearButton.textContent = 'ClearAll';
-clearButton.type = 'button';
+const functionName = parameter => transformation;
 
-const listDisplay = document.createElement('ul');
-listDisplay.id = 'listDisplay';
 
-root.appendChild(form);
-root.appendChild(clearButton);
-root.appendChild(listDisplay);
+const functionName2 = parameter => {
+     // statements
+     return result;
+   };
 
-function addItem() {
-    const itemValue = input.value.trim();
-    
-    if (itemValue !== '') {
-        shoppingList.push(itemValue);
-        
-        const li = document.createElement('li');
-        li.textContent = itemValue;
-        listDisplay.appendChild(li);
-        
-        input.value = '';
-        console.log(shoppingList);
-    }
+
+
+
+function showProperties(obj) {
+     for (let key in obj) {
+        console.log(`${key} : ${obj[key]}`)
+     }
+   };
+
+
+
+
+
+
+// EXERCISE :
+
+
+function formatNumbers(numbers) {
+  return numbers.map(num => num.toString().padStart(4, "0"));
 }
 
-function clearAll() {
-    shoppingList = [];
-    listDisplay.innerHTML = '';
-    console.log('List cleared:', shoppingList);
-}
+// Call it with an array
+let result = formatNumbers([1, 42, 999, 1234]);
+console.log(result);  // ["0001", "0042", "0999", "1234"]
 
-addButton.addEventListener('click', addItem);
-clearButton.addEventListener('click', clearAll);
 
-// // Bonus: Allow pressing Enter to add item
-// input.addEventListener('keypress', function(event) {
-//     if (event.key === 'Enter') {
-//         event.preventDefault(); // Prevent form submission
-//         addItem();
-//     }
-// });
+
+
+
+const square = x => x * x;
+
+const isEven = num => num % 2 === 0;
+
+const getFullName = (firstName, lastName) => firstName + " " + lastName;
